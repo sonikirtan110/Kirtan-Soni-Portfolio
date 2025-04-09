@@ -47,6 +47,13 @@
       --btn-teal: #4cc9f0;
       --btn-indigo: #4361ee;
       
+      /* Social Media Colors */
+      --twitter-color: #1DA1F2;
+      --instagram-color: #E1306C;
+      --linkedin-color: #0077b5;
+      --github-color: #333333;
+      --email-color: #ea4335;
+      
       /* Box Shadows */
       --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.05);
       --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.07);
@@ -264,7 +271,7 @@
       cursor: pointer;
     }
 
-    /* Hero Section */
+    /* Hero Section - Improved Responsiveness */
     #home {
       min-height: 100vh;
       display: flex;
@@ -323,6 +330,7 @@
       align-items: center;
       position: relative;
       z-index: 1;
+      width: 100%;
     }
 
     .hero-text {
@@ -440,6 +448,7 @@
       display: flex;
       gap: 15px;
       margin-top: 30px;
+      flex-wrap: wrap;
     }
 
     .social-links a {
@@ -457,15 +466,23 @@
     }
 
     .social-links a:nth-child(1) {
-      color: #0077b5; /* LinkedIn color */
+      color: var(--linkedin-color); /* LinkedIn color */
     }
     
     .social-links a:nth-child(2) {
-      color: #333333; /* GitHub color */
+      color: var(--github-color); /* GitHub color */
     }
     
     .social-links a:nth-child(3) {
-      color: #ea4335; /* Email/Gmail color */
+      color: var(--email-color); /* Email/Gmail color */
+    }
+    
+    .social-links a:nth-child(4) {
+      color: var(--twitter-color); /* Twitter color */
+    }
+    
+    .social-links a:nth-child(5) {
+      color: var(--instagram-color); /* Instagram color */
     }
 
     .social-links a:hover {
@@ -475,15 +492,23 @@
     }
     
     .social-links a:nth-child(1):hover {
-      background: #0077b5; /* LinkedIn color */
+      background: var(--linkedin-color); /* LinkedIn color */
     }
     
     .social-links a:nth-child(2):hover {
-      background: #333333; /* GitHub color */
+      background: var(--github-color); /* GitHub color */
     }
     
     .social-links a:nth-child(3):hover {
-      background: #ea4335; /* Email/Gmail color */
+      background: var(--email-color); /* Email/Gmail color */
+    }
+    
+    .social-links a:nth-child(4):hover {
+      background: var(--twitter-color); /* Twitter color */
+    }
+    
+    .social-links a:nth-child(5):hover {
+      background: var(--instagram-color); /* Instagram color */
     }
 
     /* Button Styles - Enhanced & Professional */
@@ -1146,6 +1171,8 @@
     .contact-item:nth-child(2):hover { background: linear-gradient(135deg, rgba(72, 149, 239, 0.05), rgba(76, 201, 240, 0.1)); }
     .contact-item:nth-child(3):hover { background: linear-gradient(135deg, rgba(67, 97, 238, 0.05), rgba(114, 9, 183, 0.1)); }
     .contact-item:nth-child(4):hover { background: linear-gradient(135deg, rgba(72, 149, 239, 0.05), rgba(247, 37, 133, 0.1)); }
+    .contact-item:nth-child(5):hover { background: linear-gradient(135deg, rgba(29, 161, 242, 0.05), rgba(29, 161, 242, 0.1)); }
+    .contact-item:nth-child(6):hover { background: linear-gradient(135deg, rgba(225, 48, 108, 0.05), rgba(225, 48, 108, 0.1)); }
 
     .contact-icon {
       width: 55px;
@@ -1164,6 +1191,8 @@
     .contact-item:nth-child(2) .contact-icon { background: var(--gradient-2); }
     .contact-item:nth-child(3) .contact-icon { background: var(--gradient-3); }
     .contact-item:nth-child(4) .contact-icon { background: var(--gradient-4); }
+    .contact-item:nth-child(5) .contact-icon { background: linear-gradient(135deg, #1DA1F2, #0d8bd9); }
+    .contact-item:nth-child(6) .contact-icon { background: linear-gradient(135deg, #E1306C, #C13584); }
 
     .contact-item:hover .contact-icon {
       transform: scale(1.1);
@@ -1294,6 +1323,7 @@
     .footer-social {
       display: flex;
       gap: 15px;
+      flex-wrap: wrap;
     }
 
     .footer-social a {
@@ -1536,6 +1566,10 @@
     }
 
     @media (max-width: 576px) {
+      .container {
+        padding: 0 20px;
+      }
+      
       .section-title {
         font-size: 2.2rem;
       }
@@ -1574,6 +1608,43 @@
 
       .contact-form {
         padding: 25px 20px;
+      }
+      
+      /* Fix for hero section on small screens */
+      #home {
+        padding-top: 100px;
+        padding-bottom: 50px;
+      }
+      
+      .hero-content {
+        gap: 30px;
+      }
+      
+      .social-links {
+        justify-content: center;
+      }
+      
+      .social-links a {
+        width: 40px;
+        height: 40px;
+        font-size: 1.1rem;
+      }
+    }
+    
+    /* Fix for very small screens */
+    @media (max-width: 400px) {
+      .profile-img,
+      .hero-image::before {
+        width: 200px;
+        height: 200px;
+      }
+      
+      .hero-text h1 {
+        font-size: 2rem;
+      }
+      
+      .hero-text h2 {
+        font-size: 1.4rem;
       }
     }
   </style>
@@ -1631,6 +1702,10 @@
           <a href="https://github.com/sonikirtan110" target="_blank" aria-label="GitHub Profile"><i
               class="fab fa-github"></i></a>
           <a href="mailto:sonikirtan2004@gmail.com" aria-label="Email Contact"><i class="fas fa-envelope"></i></a>
+          <a href="https://x.com/sonikirtan777?t=iotV0UoqQkUJbwKGZBN1FQ&s=08" target="_blank" aria-label="Twitter Profile"><i
+              class="fab fa-twitter"></i></a>
+          <a href="https://www.instagram.com/kirtan__soni?igsh=Z3I0cTRybmJtanFv" target="_blank" aria-label="Instagram Profile"><i
+              class="fab fa-instagram"></i></a>
         </div>
       </div>
       <div class="hero-image">
@@ -1926,6 +2001,24 @@
               <a href="https://github.com/sonikirtan110" target="_blank">github.com/sonikirtan110</a>
             </div>
           </div>
+          <div class="contact-item">
+            <div class="contact-icon">
+              <i class="fab fa-twitter"></i>
+            </div>
+            <div class="contact-details">
+              <h4>Twitter</h4>
+              <a href="https://x.com/sonikirtan777?t=iotV0UoqQkUJbwKGZBN1FQ&s=08" target="_blank">@sonikirtan777</a>
+            </div>
+          </div>
+          <div class="contact-item">
+            <div class="contact-icon">
+              <i class="fab fa-instagram"></i>
+            </div>
+            <div class="contact-details">
+              <h4>Instagram</h4>
+              <a href="https://www.instagram.com/kirtan__soni?igsh=Z3I0cTRybmJtanFv" target="_blank">@kirtan__soni</a>
+            </div>
+          </div>
         </div>
         <div class="contact-form">
           <form id="contactForm">
@@ -1966,6 +2059,10 @@
             <a href="https://github.com/sonikirtan110" target="_blank" aria-label="GitHub Profile"><i
                 class="fab fa-github"></i></a>
             <a href="mailto:sonikirtan2004@gmail.com" aria-label="Email Contact"><i class="fas fa-envelope"></i></a>
+            <a href="https://x.com/sonikirtan777?t=iotV0UoqQkUJbwKGZBN1FQ&s=08" target="_blank" aria-label="Twitter Profile"><i
+                class="fab fa-twitter"></i></a>
+            <a href="https://www.instagram.com/kirtan__soni?igsh=Z3I0cTRybmJtanFv" target="_blank" aria-label="Instagram Profile"><i
+                class="fab fa-instagram"></i></a>
           </div>
         </div>
         <div class="footer-links">
@@ -1983,6 +2080,8 @@
           <h3>Contact Info</h3>
           <p><i class="fas fa-envelope"></i> sonikirtan2004@gmail.com</p>
           <p><i class="fas fa-map-marker-alt"></i> Anand, Gujarat, India</p>
+          <p><i class="fab fa-twitter"></i> @sonikirtan777</p>
+          <p><i class="fab fa-instagram"></i> @kirtan__soni</p>
         </div>
       </div>
       <div class="footer-bottom">
