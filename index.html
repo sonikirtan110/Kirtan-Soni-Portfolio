@@ -304,6 +304,22 @@
       width: 180px;
       height: 180px;
       margin: 0 auto;
+      /* Added animation for profile image */
+      animation: pulse 3s infinite ease-in-out;
+    }
+
+    /* Pulse animation for profile image */
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+      100% { transform: scale(1); }
+    }
+
+    /* Floating animation for profile image */
+    @keyframes float {
+      0% { transform: translateY(0px); }
+      50% { transform: translateY(-10px); }
+      100% { transform: translateY(0px); }
     }
 
     .profile-img {
@@ -315,6 +331,8 @@
       box-shadow: var(--shadow-md);
       position: relative;
       z-index: 2;
+      /* Added animation for profile image */
+      animation: float 6s ease-in-out infinite;
     }
 
     .profile-img-bg {
@@ -326,6 +344,14 @@
       border-radius: 50%;
       background: var(--gradient-2);
       z-index: 1;
+      /* Added animation for background glow */
+      animation: rotate 8s linear infinite;
+    }
+
+    /* Rotation animation for background glow */
+    @keyframes rotate {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
     }
 
     .hero-text {
@@ -350,6 +376,20 @@
       color: var(--accent-color);
       margin-bottom: 20px;
       font-weight: 600;
+      /* For typewriter effect container */
+      min-height: 1.5em;
+    }
+
+    /* Typewriter cursor effect */
+    .typewriter::after {
+      content: '|';
+      display: inline-block;
+      animation: blink 0.7s infinite;
+    }
+
+    @keyframes blink {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0; }
     }
 
     .hero-text p {
@@ -979,7 +1019,7 @@
       flex: 1;
     }
 
-    /* Certificates Section */
+    /* Certificates Section - Fixed display issues */
     #certificates {
       background-color: var(--bg-primary);
     }
@@ -1379,12 +1419,6 @@
       }
     }
 
-    @keyframes float {
-      0% { transform: translateY(0px); }
-      50% { transform: translateY(-10px); }
-      100% { transform: translateY(0px); }
-    }
-
     /* Responsive Design - Enhanced */
     @media (min-width: 768px) {
       .hero-content {
@@ -1624,7 +1658,7 @@
         </div>
         <div class="hero-text">
           <h1>Hello, I'm <span class="highlight">Kirtan Soni</span></h1>
-          <h2>Data Analyst & AI/ML Enthusiast</h2>
+          <h2 class="typewriter"></h2>
           <p>Aspiring Data Analyst with experience in data processing, visualization, and statistical analysis. Passionate
             about leveraging AI and ML to derive meaningful insights from complex datasets.</p>
           <div class="cta-buttons">
@@ -1813,6 +1847,7 @@
               <a href="https://github.com/sonikirtan110/Wine-Quality-Analysis/tree/main" class="btn btn-outline-orange"
                 target="_blank"><i class="fas fa-code"></i> View Code</a>
               <a href="https://project.novypro.com/PVlKsk" class="btn btn-outline-primary" target="_blank"><i
+                    class="btn btn-outline-primary" target="_blank"><i
                   class="fas fa-chart-line"></i> View Dashboard</a>
             </div>
           </div>
@@ -1834,9 +1869,6 @@
             <h3 class="certificate-title">Introduction to Data Science</h3>
             <p class="certificate-issuer"><i class="fas fa-certificate"></i> Issued by Cisco</p>
             <p class="certificate-date"><i class="far fa-calendar-alt"></i> 2023</p>
-          </div>
-        </div>
-        <div class="certificate-card">  2023</p>
           </div>
         </div>
         <div class="certificate-card">
@@ -2157,6 +2189,48 @@
     animateElements.forEach(element => {
       observer.observe(element);
     });
+
+    // Typewriter effect for hero section
+    const typewriterElement = document.querySelector('.typewriter');
+    const phrases = ["Data Analyst & AI/ML Enthusiast", "Excel & SQL Expert", "Power BI Developer", "Machine Learning Enthusiast"];
+    let phraseIndex = 0;
+    let charIndex = 0;
+    let isDeleting = false;
+    let typingSpeed = 100;
+
+    function typeWriter() {
+      const currentPhrase = phrases[phraseIndex];
+      
+      if (isDeleting) {
+        // Deleting text
+        typewriterElement.textContent = currentPhrase.substring(0, charIndex - 1);
+        charIndex--;
+        typingSpeed = 50; // Faster when deleting
+      } else {
+        // Typing text
+        typewriterElement.textContent = currentPhrase.substring(0, charIndex + 1);
+        charIndex++;
+        typingSpeed = 100; // Normal speed when typing
+      }
+      
+      // If finished typing the phrase
+      if (!isDeleting && charIndex === currentPhrase.length) {
+        // Pause at the end of phrase
+        isDeleting = true;
+        typingSpeed = 1500; // Wait before deleting
+      } 
+      // If finished deleting the phrase
+      else if (isDeleting && charIndex === 0) {
+        isDeleting = false;
+        phraseIndex = (phraseIndex + 1) % phrases.length; // Move to next phrase
+        typingSpeed = 500; // Pause before typing new phrase
+      }
+      
+      setTimeout(typeWriter, typingSpeed);
+    }
+
+    // Start the typewriter effect
+    window.addEventListener('load', typeWriter);
 
     // Contact form API handler
     document.getElementById('contactForm').addEventListener('submit', function (e) {
