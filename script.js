@@ -33,24 +33,34 @@
   const root = document.documentElement;
   const themeToggle = document.getElementById('themeToggle');
   const themeIcon = document.getElementById('themeIcon');
+  const themeOrder = ['light', 'dark', 'dashboard', 'purple'];
+  const themeIcons = {
+    light: 'fas fa-moon',
+    dark: 'fas fa-sun',
+    dashboard: 'fas fa-chart-line',
+    purple: 'fas fa-palette'
+  };
 
   function applyTheme(theme) {
     root.setAttribute('data-theme', theme);
     localStorage.setItem('portfolio-theme', theme);
-    themeIcon.className = theme === 'dark' ? 'fas fa-sun' : 'fas fa-moon';
+    themeIcon.className = themeIcons[theme] || themeIcons.light;
+    themeToggle.title = `Theme: ${theme}`;
+    themeToggle.setAttribute('aria-label', `Current theme ${theme}. Click to switch theme`);
   }
 
   const savedTheme = localStorage.getItem('portfolio-theme');
-  if (savedTheme === 'light' || savedTheme === 'dark') {
+  if (savedTheme && themeOrder.includes(savedTheme)) {
     applyTheme(savedTheme);
   } else {
-    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-    applyTheme(prefersDark ? 'dark' : 'light');
+    applyTheme('dashboard');
   }
 
   themeToggle.addEventListener('click', () => {
-    const isDark = root.getAttribute('data-theme') === 'dark';
-    applyTheme(isDark ? 'light' : 'dark');
+    const currentTheme = root.getAttribute('data-theme') || 'light';
+    const currentIndex = themeOrder.indexOf(currentTheme);
+    const nextTheme = themeOrder[(currentIndex + 1) % themeOrder.length];
+    applyTheme(nextTheme);
   });
 
   // Navbar scroll
