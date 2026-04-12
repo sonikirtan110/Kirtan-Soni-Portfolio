@@ -391,3 +391,34 @@
       .pipeline-flow { grid-template-columns: 1fr; }
       .contact-big { font-size: 1.8rem; }
     }
+
+    /* Global white dotted background for all themes */
+    body {
+      margin: 0;
+      background-color: #ffffff !important;
+      background-image: none !important;
+      position: relative;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background-image: radial-gradient(#d1d5db 1px, transparent 1px);
+      background-size: 22px 22px;
+      mask-image: radial-gradient(circle at center, black 40%, transparent 80%);
+      -webkit-mask-image: radial-gradient(circle at center, black 40%, transparent 80%);
+      opacity: 0.6;
+      pointer-events: none;
+      z-index: -1;
+    }
+
+    #about,
+    #pipeline,
+    #skills,
+    #certifications,
+    #experience,
+    #projects,
+    #contact {
+      background: transparent !important;
+    }
