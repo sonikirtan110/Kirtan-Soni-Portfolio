@@ -18,6 +18,7 @@ Professional portfolio website for Data Engineering, Analytics, and AI/ML roles.
 - Split inline styles and scripts into `style.css` and `script.js`.
 - Synced required image assets into `images/`.
 - Fixed `error.html` home button to use a repo-safe path (`./index.html`).
+- Set the default portfolio theme to `skyblue` (with compatibility for older saved `dashboard` preference).
 
 ## Run Locally
 

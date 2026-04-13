@@ -33,11 +33,11 @@
   const root = document.documentElement;
   const themeToggle = document.getElementById('themeToggle');
   const themeIcon = document.getElementById('themeIcon');
-  const themeOrder = ['light', 'dark', 'dashboard', 'purple'];
+  const themeOrder = ['light', 'dark', 'skyblue', 'purple'];
   const themeIcons = {
     light: 'fas fa-moon',
     dark: 'fas fa-sun',
-    dashboard: 'fas fa-chart-line',
+    skyblue: 'fas fa-cloud',
     purple: 'fas fa-palette'
   };
 
@@ -52,8 +52,11 @@
   const savedTheme = localStorage.getItem('portfolio-theme');
   if (savedTheme && themeOrder.includes(savedTheme)) {
     applyTheme(savedTheme);
+  } else if (savedTheme === 'dashboard') {
+    // Backward compatibility for users with the old theme key in storage.
+    applyTheme('skyblue');
   } else {
-    applyTheme('dashboard');
+    applyTheme('skyblue');
   }
 
   themeToggle.addEventListener('click', () => {
